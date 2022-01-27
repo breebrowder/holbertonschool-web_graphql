@@ -35,9 +35,24 @@ const TaskType = new GraphQLObjectType({
   })
 })
 
+const RootQueryType = new GraphQLObjectType({
+  name: 'RootQueryType',
+  fields: () => ({
+    fieldTask: {
+    type: TaskType,
+    args: {
+        id: { type: GraphQLString }
+      },
+      resolve: (parent, args) => {
+     // leave empty   
+      }
+    },
+  })
+})
+
 // export your GraphQLSchema with your RootQuery
 const schema = new GraphQLSchema({
     query: RootQueryType,
-    mutation: RootMutationType
+    // mutation: RootMutationType
 })
   
