@@ -29,7 +29,7 @@ const TaskType = new GraphQLObjectType({
     fieldTask: {
       type: TaskType,
       resolve: (parent, args) => {
-        // leave empty
+        return lodash.find(fieldTask, { id: parent.fieldTaskId});
       }
     }
   })
@@ -44,7 +44,7 @@ const RootQueryType = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       resolve: (parent, args) => {
-     // leave empty   
+      lodash.find(fieldTask, { id: args.id })
       }
     },
   })
@@ -52,7 +52,8 @@ const RootQueryType = new GraphQLObjectType({
 
 // export your GraphQLSchema with your RootQuery
 const schema = new GraphQLSchema({
-    query: RootQueryType,
+    query: RootQueryType
     // mutation: RootMutationType
 })
   
+exports.schema = new GraphQLSchema({query: RootQueryType});
