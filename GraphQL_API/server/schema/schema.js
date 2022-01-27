@@ -22,10 +22,10 @@ const TaskType = new GraphQLObjectType({
   name: 'Task',
   description: 'This represents a book written by an author',
   fields: () => ({
-    id: { type: GraphQLNonNull(GraphQLString) },
-    title: { type: GraphQLNonNull(GraphQLString) },
-    weight: { type: GraphQLNonNull(GraphQLInt) },
-    description: { type: GraphQLNonNull(GraphQLString) },
+    id: { type: (GraphQLString) },
+    title: { type: (GraphQLString) },
+    weight: { type: (GraphQLInt) },
+    description: { type: (GraphQLString) },
     fieldTask: {
       type: TaskType,
       resolve: (parent, args) => {
