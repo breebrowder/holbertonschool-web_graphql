@@ -55,5 +55,8 @@ const schema = new GraphQLSchema({
     query: RootQueryType
     // mutation: RootMutationType
 })
-  
+
+// export your GraphQLSchema with your RootQuery at the end of the file
+module.exports = schema;
 exports.schema = new GraphQLSchema({query: RootQueryType});
+
