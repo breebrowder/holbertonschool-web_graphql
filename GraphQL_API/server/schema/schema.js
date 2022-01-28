@@ -24,40 +24,7 @@ const arrayProjects = [
   { id: '2', title: 'Bootstrap', weight: 1, description: 'Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and JavaScript design templates for typography, forms, buttons, navigation, and other interface components.'},
 ]
 
-const TaskType = new GraphQLObjectType({
-  name: 'Task',
-  description: 'This represents a book written by an author',
-  fields: () => ({
-    id: { type: (GraphQLString) },
-    title: { type: (GraphQLString) },
-    weight: { type: (GraphQLInt) },
-    description: { type: (GraphQLString) },
-    Task: {
-      type: TaskType,
-      resolve: (parent, args) => {
-        return lodash.find(arrayTasks, { id: parent.TaskId});
-      }
-    }
-  })
-})
-
-const ProjectType = new GraphQLObjectType({
-  name: 'Project',
-  description: 'This represents a book written by an author',
-  fields: () => ({
-    id: { type: (GraphQLID) },
-    title: { type: (GraphQLString) },
-    weight: { type: (GraphQLInt) },
-    description: { type: (GraphQLString) },
-    Project: {
-      type: ProjectType,
-      resolve: (parent, args) => {
-        return lodash.find(arrayProjects, { id: parent.ProjectId});
-      }
-    }
-  })
-})
-
+// rootQuery scope
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
@@ -82,13 +49,45 @@ const RootQueryType = new GraphQLObjectType({
   })
 })
 
+const TaskType = new GraphQLObjectType({
+  name: 'Task',
+  fields: () => ({
+    id: { type: (GraphQLString) },
+    title: { type: (GraphQLString) },
+    weight: { type: (GraphQLInt) },
+    description: { type: (GraphQLString) },
+    Task: {
+      type: TaskType,
+      resolve: (parent, args) => {
+        return lodash.find(arrayTasks, { id: parent.TaskId});
+      }
+    }
+  })
+})
+
+const ProjectType = new GraphQLObjectType({
+  name: 'Project',
+  fields: () => ({
+    id: { type: (GraphQLID) },
+    title: { type: (GraphQLString) },
+    weight: { type: (GraphQLInt) },
+    description: { type: (GraphQLString) },
+    Project: {
+      type: ProjectType,
+      resolve: (parent, args) => {
+        return lodash.find(arrayProjects, { id: parent.ProjectId});
+      }
+    }
+  })
+})
+
 // export your GraphQLSchema with your RootQuery
 const schema = new GraphQLSchema({
+  // define the query section
     query: RootQueryType
     // mutation: RootMutationType
 })
 
 // export your GraphQLSchema with your RootQuery at the end of the file
 module.exports = schema;
-exports.schema = new GraphQLSchema({query: RootQueryType});
 
