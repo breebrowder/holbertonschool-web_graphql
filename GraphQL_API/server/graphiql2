@@ -1,5 +1,5 @@
 {
-     task(id: "2") {
+     Task(id: "2") {
        title
        weight
        description
