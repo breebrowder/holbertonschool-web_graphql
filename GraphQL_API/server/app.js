@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 
-mongoose.connect(`mongodb+srv://6FlaZOaZ2MVdV7jc:6FlaZOaZ2MVdV7jc@breescluster.njmby.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
+mongoose.connect(`remove sensitive information`);
 
 
 
